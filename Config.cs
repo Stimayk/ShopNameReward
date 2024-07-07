@@ -6,7 +6,7 @@ namespace ShopNameReward
     public class ShopNameRewardConfig : BasePluginConfig
     {
         [JsonPropertyName("Adverts")]
-        public List<string> Adverts { get; set; } = new List<string> { "csdevs.net" };
+        public List<string> Adverts { get; set; } = ["csdevs.net"];
 
         [JsonPropertyName("Credits")]
         public int Credits { get; set; } = 1;
