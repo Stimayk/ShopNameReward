@@ -21,7 +21,7 @@ namespace ShopNameReward
         {
             Config = config;
         }
-
+        
         public override void OnAllPluginsLoaded(bool hotReload)
         {
             SHOP_API = IShopApi.Capability.Get();
@@ -39,17 +39,25 @@ namespace ShopNameReward
         {
             foreach (var player in Utilities.GetPlayers().Where(p => p.IsValid && !p.IsBot))
             {
-                if (player.PlayerName.Contains(Config.Advert))
+                bool hasAdvert = false;
+                
+                foreach (var advert in Config.Adverts)
                 {
-                    if (SHOP_API != null)
+                    if (player.PlayerName.Contains(advert))
                     {
-                        SHOP_API.SetClientCredits(player, SHOP_API.GetClientCredits(player) + Config.Credits);
-                        player.PrintToChat(Localizer["HaveTag", Config.Credits, Config.Advert]);
+                        hasAdvert = true;
+                        if (SHOP_API != null)
+                        {
+                            SHOP_API.SetClientCredits(player, SHOP_API.GetClientCredits(player) + Config.Credits);
+                            player.PrintToChat(Localizer["HaveTag", Config.Credits, advert]);
+                        }
+                        break;
                     }
                 }
-                else
+
+                if (!hasAdvert)
                 {
-                    player.PrintToChat(Localizer["NeedTag", Config.Advert]);
+                    player.PrintToChat(Localizer["NeedTag", string.Join(", ", Config.Adverts)]);
                 }
             }
         }

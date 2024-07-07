@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CounterStrikeSharp.API" Version="*" />
+        <PackageReference Include="CounterStrikeSharp.API" Version="1.0.246" />
     </ItemGroup>
 
     <ItemGroup>
@@ -17,7 +17,6 @@
 
 	<ItemGroup>
 		<Reference Include="IShopApi">
-			<HintPath>C:\Users\Stimayk\Documents\GitHub\WpPluginSources\IShopApi\IShopApi.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
